@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Información del Sistema</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        h1 {
+            text-align: center;
+        }
+        .info {
+            margin-bottom: 20px;
+        }
+        .info h2 {
+            margin-bottom: 10px;
+        }
+        .info pre {
+            background-color: #f4f4f4;
+            padding: 10px;
+            border: 1px solid #ddd;
+        }
+    </style>
+</head>
+<body>
+    <h1>Información del Sistema</h1>
+    <div class="info">
+        <h2>Sistema Operativo</h2>
+        <pre id="sistema"></pre>
+    </div>
+    <div class="info">
+        <h2>Antivirus</h2>
+        <pre id="antivirus"></pre>
+    </div>
+    <div class="info">
+        <h2>Trazas del Antivirus</h2>
+        <pre id="trazas"></pre>
+    </div>
+    <div class="info">
+        <h2>Puertos USB</h2>
+        <pre id="usb"></pre>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const data = {{ data|tojson|safe }};
+            document.getElementById('sistema').textContent = JSON.stringify(data.Sistema, null, 2);
+            document.getElementById('antivirus').textContent = JSON.stringify(data.Antivirus, null, 2);
+            document.getElementById('trazas').textContent = JSON.stringify(data.Trazas_Antivirus, null, 2);
+            document.getElementById('usb').textContent = JSON.stringify(data.Puertos_USB, null, 2);
+        });
+    </script>
+</body>
+</html>
